@@ -3,59 +3,47 @@ author: c0lima
 description: |
   This action builds, tests, and deploys a Node.js application to Azure. 
   The action requires an Azure service principal with the appropriate permissions.
-
 inputs:
   node-version:
     description: 'The version of Node.js to use for building and testing.'
     required: false
     default: '14.x'
-
   app-name:
     description: 'The name of the Azure Web App to deploy to.'
     required: true
-
   package:
     description: 'The path to the application package to deploy.'
     required: true
-
   environment:
     description: 'The name of the environment to deploy to.'
     required: false
     default: 'staging'
-
   service-principal:
     description: 'The Azure service principal to use for authentication.'
     required: true
-
   tenant-id:
     description: 'The Azure Active Directory tenant ID associated with the service principal.'
     required: true
-
   subscription-id:
     description: 'The Azure subscription ID associated with the service principal.'
     required: true
-
   custom-test-command:
     description: 'The custom command to run for testing the application.'
     required: false
     default: 'npm test'
-
 outputs:
   deployment-url:
     description: 'The URL of the deployed application.'
     value: ${{ steps.deploy-to-azure.outputs.webapp-url }}
-
 runs:
   using: 'composite'
   steps:
     - uses: actions/checkout@v2
-
     - name: Build and test
       id: build-and-test
       uses: actions/setup-node@v2
       with:
         node-version: ${{ inputs.node-version }}
-
     - name: Cache dependencies
       uses: actions/cache@v2
       with:
@@ -63,26 +51,21 @@ runs:
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
         restore-keys: |
           ${{ runner.os }}-node-
-
     - name: Install dependencies
       run: npm ci
-
     - name: Run tests
       run: ${{ inputs.custom-test-command }}
-
     - name: Upload test results
       uses: actions/upload-artifact@v2
       with:
         name: test-results
         path: test-results.xml
-
     - name: Setup Azure CLI
       uses: azure/login@v1
       with:
         creds: ${{ inputs.service-principal }}
         tenant-id: ${{ inputs.tenant-id }}
         subscription-id: ${{ inputs.subscription-id }}
-
     - name: Deploy to Azure
       id: deploy-to-azure
       uses: azure/webapps-deploy@v2
@@ -90,11 +73,9 @@ runs:
         app-name: ${{ inputs.app-name }}-${{ inputs.environment }}
         package: ${{ inputs.package }}
         slot-name: ${{ inputs.environment }}
-
   - name: Get deployment status
     if: success()
     run: echo "::set-output name=status::Deployment successful." | sed 's/\\r//g'
-
 branding:
   icon: 'cloud'
   color: 'blue'
