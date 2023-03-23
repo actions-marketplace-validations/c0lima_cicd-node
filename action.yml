@@ -1,8 +1,8 @@
-name: "ci cd nodejs azure"
-author: c0lima
-description: |
-  This action builds, tests, and deploys a Node.js application to Azure. 
-  The action requires an Azure service principal with the appropriate permissions.
+name: "ci cd123123213"
+description: This action builds, tests, and deploys a Node.js application to Azure. The action requires an Azure service principal with the appropriate permissions.
+branding:
+  icon: 'shield'
+  color: 'blue'
 inputs:
   node-version:
     description: 'The version of Node.js to use for building and testing.'
@@ -76,6 +76,3 @@ runs:
   - name: Get deployment status
     if: success()
     run: echo "::set-output name=status::Deployment successful." | sed 's/\\r//g'
-branding:
-  icon: 'cloud'
-  color: 'blue'
