@@ -52,8 +52,10 @@ runs:
         restore-keys: |
           ${{ runner.os }}-node-
     - name: Install dependencies
+      shell: bash
       run: npm ci
     - name: Run tests
+      shell: bash
       run: ${{ inputs.custom-test-command }}
     - name: Upload test results
       uses: actions/upload-artifact@v2
@@ -73,6 +75,7 @@ runs:
         app-name: ${{ inputs.app-name }}-${{ inputs.environment }}
         package: ${{ inputs.package }}
         slot-name: ${{ inputs.environment }}
-  - name: Get deployment status
-    if: success()
-    run: echo "::set-output name=status::Deployment successful." | sed 's/\\r//g'
+    - name: Get deployment status
+      shell: bash
+      if: success()
+      run: echo "::set-output name=status::Deployment successful." | sed 's/\\r//g'
