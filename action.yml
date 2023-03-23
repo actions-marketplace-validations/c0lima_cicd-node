@@ -1,5 +1,8 @@
-name: "ci cd123123213"
-description: This action builds, tests, and deploys a Node.js application to Azure. The action requires an Azure service principal with the appropriate permissions.
+name: "nodejs cicd azure"
+description: | 
+  "This action builds, test and deploy a Node.js app to Azure.
+  Requires an Azure service principal with necessary permissions."
+
 branding:
   icon: 'shield'
   color: 'blue'
