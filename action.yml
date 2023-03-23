@@ -1,6 +1,5 @@
-name: "ci-cd nodejs azure"
+name: "ci cd nodejs azure"
 author: Socius
-
 description: |
   This action builds, tests, and deploys a Node.js application to Azure. 
   The action requires an Azure service principal with the appropriate permissions.
