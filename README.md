@@ -1,4 +1,4 @@
-    Node.js CI/CD for Azure Web Apps
+#Node.js CI/CD for Azure Web Apps
 
 This Github Action builds, tests, and deploys a Node.js application to Azure Web Apps. The action requires an Azure service principal with the appropriate permissions.
 
@@ -8,46 +8,44 @@ This Github Action builds, tests, and deploys a Node.js application to Azure Web
 
 The version of Node.js to use for building and testing. Default is 14.x.
 
-## `app-name`
+### `app-name`
 
 **Required** The name of the Azure Web App to deploy to.
-## `package`
+### `package`
 
 **Required** The path to the application package to deploy.
-## `environment`
+### `environment`
 
 The name of the environment to deploy to. Default is staging.
-## `service-principal`
+### `service-principal`
 
 **Required** The Azure service principal to use for authentication.
-## `tenant-id`
+### `tenant-id`
 
 **Required** The Azure Active Directory tenant ID associated with the service principal.
-## `subscription-id`
+### `subscription-id`
 
 **Required** The Azure subscription ID associated with the service principal.
-## `custom-test-command`
+### `custom-test-command`
 
 The custom command to run for testing the application. Default is npm test.
-## `custom-deploy-script`
+### `custom-deploy-script`
 
 The custom script to use for deploying the application. Default is an empty string.
-## `additional-deploy-settings`
+### `additional-deploy-settings`
 
 Additional deployment settings to pass to the deployment script. Default is an empty string.
 Outputs
-## `deployment-urls`
+### `deployment-urls`
 
 The URLs of the deployed application.
 
-## `deployment-status`
+### `deployment-status`
 The status of the deployment.
 
-Example Usage
+## Example Usage
 
-```
-yaml
-
+```yaml
 name: Deploy to Azure Web App
 on:
   push:

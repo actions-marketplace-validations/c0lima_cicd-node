@@ -1,4 +1,5 @@
-name: Node.js CI/CD
+name: "ci-cd nodejs azure"
+author: Socius
 
 description: |
   This action builds, tests, and deploys a Node.js application to Azure. 
@@ -94,3 +95,7 @@ runs:
   - name: Get deployment status
     if: success()
     run: echo "::set-output name=status::Deployment successful." | sed 's/\\r//g'
+
+branding:
+  icon: 'cloud'
+  color: 'blue'
