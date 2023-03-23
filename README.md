@@ -1,4 +1,4 @@
-#Node.js CI/CD for Azure Web Apps
+# Node.js CI/CD for Azure Web Apps
 
 This Github Action builds, tests, and deploys a Node.js application to Azure Web Apps. The action requires an Azure service principal with the appropriate permissions.
 
